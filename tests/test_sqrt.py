@@ -4,7 +4,7 @@ import math
 from hypothesis import given, strategies as st
 from more_itertools import iequals, take
 
-from whyfp.sqrt import next_sqrt_approx, sqrt_approxs
+from whyfp.sqrt import next_sqrt_approx, relative_sqrt, sqrt_approxs, within_sqrt
 
 
 @given(
@@ -31,9 +31,19 @@ def test_sqrt_approxs(num: float, initial: float):
     assert iequals(take(10, sqrt_approxs(num, initial)), take(10, expected))
 
 
-def test_within_sqrt():
-    pass
+@given(
+    st.floats(min_value=0, exclude_min=True, max_value=1e6),
+    st.floats(min_value=1e-8, max_value=2.0),
+)
+def test_within_sqrt(num: float, tol: float):
+    expected = math.sqrt(num)
+    assert math.isclose(within_sqrt(num, tol, initial=num), expected, abs_tol=tol, rel_tol=0)
 
 
-def test_relative_sqrt():
-    pass
+@given(
+    st.floats(min_value=0, exclude_min=True, allow_infinity=False, allow_nan=False),
+    st.floats(min_value=1e-8, max_value=1e-1),
+)
+def test_relative_sqrt(num: float, tol: float):
+    expected = math.sqrt(num)
+    assert math.isclose(relative_sqrt(num, tol, initial=num), expected, abs_tol=0, rel_tol=tol)
