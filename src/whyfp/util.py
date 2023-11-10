@@ -11,5 +11,10 @@ def repeat_fn(func: Callable[[Any], Any], value: Any) -> Iterable[Any]:
 
 
 def within(values: Iterable[float], tol: float) -> Iterable[float]:
-    """Yield values that differ by no more than tolerance ``tol`` between two successive values."""
+    """Yield values that differ by no more than tolerance ``tol`` between successive values."""
     return (y for x, y in pairwise(values) if abs(x - y) <= tol)
+
+
+def relative(values: Iterable[float], tol: float) -> Iterable[float]:
+    """Yield values that differ by no more than relative tolerance ``tol`` between successive values."""
+    return (y for x, y in pairwise(values) if abs(x / y - 1) <= tol)
