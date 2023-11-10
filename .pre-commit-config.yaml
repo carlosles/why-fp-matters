@@ -21,6 +21,7 @@ repos:
     rev: v1.6.1
     hooks:
     - id: mypy
+      additional_dependencies: [more-itertools]
       exclude: '(build/)'
 
   - repo: local
