@@ -2,22 +2,24 @@
 from collections.abc import Iterable
 from functools import partial
 
-from whyfp.util import repeat_fn
+from more_itertools import first
+
+from whyfp.util import relative, repeat_fn, within
 
 
-def relative_sqrt(num: float, eps: float, initial: float) -> float:
-    """Return first Newton-Raphson square root estimate of ``num`` within ratio ``eps``."""
-    pass
+def relative_sqrt(num: float, tol: float, initial: float) -> float:
+    """Return first Newton-Raphson square root estimate of ``num`` within relative tolerance ``tol``."""
+    return first(relative(sqrt_approxs(num, initial), tol))
 
 
-def within_sqrt(num: float, eps: float, initial: float) -> float:
-    """Return first Newton-Raphson square root estimate of ``num`` within tolerance ``eps``."""
-    pass
+def within_sqrt(num: float, tol: float, initial: float) -> float:
+    """Return first Newton-Raphson square root estimate of ``num`` within absolute tolerance ``tol``."""
+    return first(within(sqrt_approxs(num, initial), tol))
 
 
 def sqrt_approxs(num: float, initial: float) -> Iterable[float]:
     """Return Newton-Raphson square root approximations of ``num`` following ``initial`` estimate."""
-    return repeat_fn(partial(next_sqrt_approx, num=num), initial)
+    return repeat_fn(partial(next_sqrt_approx, num), initial)
 
 
 def next_sqrt_approx(num: float, prev: float) -> float:
