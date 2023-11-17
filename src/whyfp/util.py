@@ -1,10 +1,13 @@
 """Utilities shared between various modules."""
 from collections.abc import Callable, Iterable
 from itertools import pairwise
-from typing import Any
+from typing import TypeVar
 
 
-def repeat_fn(func: Callable[[Any], Any], value: Any) -> Iterable[Any]:
+T = TypeVar('T')
+
+
+def repeat_fn(func: Callable[[T], T], value: T) -> Iterable[T]:
     """Repeat function application recursively and indefinitely."""
     yield value
     yield from repeat_fn(func, func(value))
