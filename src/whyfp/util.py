@@ -38,7 +38,11 @@ def improve(values: Iterable[float]) -> Iterable[float]:
 def order(values: Iterable[float]) -> int:
     """Return estimate of power exponent that characterizes sequence of approximations."""
     a, b, c = islice(values, 3)
-    return round(math.log2((a - c) / (b - c) - 1))
+    try:
+        rate = (a - c) / (b - c) - 1
+        return round(math.log2(rate))
+    except (ZeroDivisionError, ValueError):
+        return 1
 
 
 def elim_error(n: int, values: Iterable[float]) -> Iterable[float]:
