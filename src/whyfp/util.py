@@ -7,7 +7,6 @@ from typing import TypeVar, cast
 from more_itertools import nth
 
 T = TypeVar('T')
-T_co = TypeVar('T_co', covariant=True)
 
 
 def repeat_fn(func: Callable[[T], T], value: T) -> Iterable[T]:
