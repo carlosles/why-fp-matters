@@ -40,7 +40,7 @@ def order(values: Iterable[float]) -> int:
     a, b, c = islice(values, 3)
     try:
         rate = (a - c) / (b - c) - 1
-        return round(math.log2(rate))
+        return max(1, round(math.log2(rate)))
     except (ZeroDivisionError, ValueError):
         return 1
 
