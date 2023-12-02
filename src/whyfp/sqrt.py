@@ -6,6 +6,8 @@ from more_itertools import first
 
 from whyfp.util import relative, repeat_fn, within
 
+__all__ = ['relative_sqrt', 'within_sqrt', 'sqrt_approxs', 'next_sqrt_approx']
+
 
 def relative_sqrt(num: float, tol: float, initial: float) -> float:
     """Return first Newton-Raphson square root estimate of ``num`` within relative tolerance ``tol``."""

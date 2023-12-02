@@ -7,6 +7,8 @@ from more_itertools import first
 
 from whyfp.util import fastest, improve, repeat_fn, within
 
+__all__ = ['within_diff', 'within_diff_4', 'differentiate', 'easy_diff']
+
 
 def within_diff(func: Callable[[float], float], x: float, tol: float, h0: float) -> float:
     """Return derivative of `func` at `x` within absolute tolerance `tol` using the fastest scheme."""
