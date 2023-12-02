@@ -41,5 +41,5 @@ def integrate(func: Callable[[float], float], a: float, b: float) -> Iterable[fl
 
 
 def easy_integrate(func: Callable[[float], float], a: float, b: float) -> float:
-    """Return the straight line slope of function `func` between points  `x` and `x+h`."""
-    pass
+    """Return area under function `func` between points `a` and `b` assuming straight line."""
+    return (func(a) + func(b)) * (b - a) / 2
