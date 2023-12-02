@@ -6,6 +6,17 @@ from typing import TypeVar, cast
 
 from more_itertools import nth
 
+__all__ = [
+    'repeat_fn',
+    'within',
+    'relative',
+    'fastest',
+    'improve',
+    'order',
+    'elim_error',
+    'second',
+]
+
 T = TypeVar('T')
 
 

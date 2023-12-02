@@ -8,6 +8,8 @@ from more_itertools import first
 
 from whyfp.util import fastest, improve, within
 
+__all__ = ['within_integrate', 'pi_approxs', 'integrate', 'easy_integrate']
+
 
 def within_integrate(func: Callable[[float], float], a: float, b: float, tol: float) -> float:
     """Return integral of `func` between [`a`, `b`] with tolerance `tol` using the fastest scheme."""
